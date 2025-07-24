@@ -40,14 +40,14 @@ dependencies:
   # Local Database (For saving collections & history)
   # isar: ^3.1.0+1
   # isar_flutter_libs: ^3.1.0+1
-  # path_provider: ^2.1.2     # To find the correct local storage path
+  path_provider: ^2.1.2     # To find the correct local storage path
 
   # Routing
   go_router: ^13.2.0        # Declarative routing for a clean navigation structure
 
   # UI & Utilities
   flutter_syntax_view: ^4.0.0 # For pretty-printing JSON/XML in the response
-  file_picker: ^8.0.0       # For form-data file uploads
+  file_picker: ^8.0.0+1       # For form-data file uploads
   google_fonts: ^6.2.1      # For better typography
   shared_preferences: ^2.2.2 # For simple key-value settings
 
@@ -56,8 +56,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
-  # Add this line
   uuid: ^4.4.0
+  sqflite: ^2.3.2
+  path: ^1.9.0 # Needed to find the correct database path on any OS
+  sqflite_common_ffi: ^2.3.2+1
+  open_file_plus: ^3.4.1      # To open downloaded files
 
 dev_dependencies:
   flutter_test:
