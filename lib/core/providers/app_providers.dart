@@ -437,3 +437,24 @@ final saveFileProvider =
     // await OpenFile.open(savePath);
   };
 });
+
+// --- NEW PROVIDER TO SAVE BYTES TO A USER-CHOSEN LOCATION ---
+final saveBytesAsFileProvider = Provider.autoDispose<
+    // It takes the bytes and a suggested filename
+    Future<void> Function(Uint8List, String)>((ref) {
+  return (bytes, suggestedName) async {
+    // This opens the native "Save As..." dialog
+    String? outputPath = await FilePicker.platform.saveFile(
+      dialogTitle: 'Please select an output file:',
+      fileName: suggestedName,
+    );
+
+    // The user may have cancelled the dialog
+    if (outputPath == null) {
+      throw Exception('Save operation cancelled by user.');
+    }
+
+    final file = File(outputPath);
+    await file.writeAsBytes(bytes);
+  };
+});
