@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'views/base64_decoder_view.dart';
+import 'views/ssh_explorer_view.dart';
 
 // A provider to manage which utility is currently selected
 final selectedUtilityIndexProvider = StateProvider<int>((ref) => 0);
@@ -14,10 +15,9 @@ class UtilitiesShell extends ConsumerWidget {
     final selectedIndex = ref.watch(selectedUtilityIndexProvider);
     final notifier = ref.read(selectedUtilityIndexProvider.notifier);
 
-    // List of available utility widgets
     const utilityViews = [
       Base64DecoderView(),
-      // Add more utility views here in the future
+      SshExplorerView(),
     ];
 
     return Row(
@@ -34,7 +34,12 @@ class UtilitiesShell extends ConsumerWidget {
                 selected: selectedIndex == 0,
                 onTap: () => notifier.state = 0,
               ),
-              // Add more ListTiles for future utilities here
+              ListTile(
+                leading: const Icon(Icons.folder_open),
+                title: const Text('SSH Explorer'),
+                selected: selectedIndex == 1,
+                onTap: () => notifier.state = 1,
+              ),
             ],
           ),
         ),
